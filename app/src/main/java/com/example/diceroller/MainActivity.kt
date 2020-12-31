@@ -8,6 +8,9 @@ import android.widget.TextView
 import kotlin.random.Random as Random
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var diceImage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,13 +19,12 @@ class MainActivity : AppCompatActivity() {
         rollButton.setOnClickListener {
             rollDice()
         }
+        diceImage = findViewById(R.id.dice_image)
     }
 
     private fun rollDice() {
 
-        val randomInt = Random().nextInt(6) + 1
-        val diceImage : ImageView = findViewById(R.id.dice_image)
-
+        val randomInt = Random.nextInt(6) + 1
         val drawableResource = when(randomInt) {
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
@@ -31,5 +33,6 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
+        diceImage.setImageResource(drawableResource)
     }
 }
